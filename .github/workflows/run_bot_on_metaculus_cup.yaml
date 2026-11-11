@@ -2,23 +2,6 @@ name: Forecast on Metaculus Cup
 
 on:
   workflow_dispatch:
-  schedule:
-    # Split across multiple cron entries to avoid GitHub Actions silently dropping
-    # */N schedules under runner load. Offsets staggered off the tournament workflow's
-    # :03/:23/:43 and minibench's :08/:38 to spread runner pickup — the workflows sit in
-    # separate concurrency groups, so identical minutes would put two full bot runs on the
-    # runners and on the shared AskNews / Gemini / OpenRouter quotas at the same instant.
-    # Make sure to skip already forecasted questions!
-    #
-    # Hourly since 2026-09-03, same cadence as the tournament: a run that finds no new
-    # question makes no LLM call and costs nothing (cli pins
-    # skip_previously_forecasted_questions on for every tournament-shaped mode), so the
-    # cadence buys open-to-forecast latency for free. The every-2-days entry it replaced
-    # could leave a cup question unforecast for most of its window.
-    - cron: "13 * * * *" # every hour at :13
-    - cron: "33 * * * *" # every hour at :33
-    - cron: "53 * * * *" # every hour at :53
-
 # Add concurrency group to prevent parallel runs
 concurrency:
   group: ${{ github.workflow }}

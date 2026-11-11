@@ -265,6 +265,7 @@ class TestNonBotWorkflowCapsStayInBand:
         ]
 
 
+@pytest.mark.skip(reason="Fork Upsilon : planifications retirées et lecteur payant Gemini désactivé volontairement (pas de clé Google)")
 class TestScheduledBotCadence:
     """Every scheduled bot workflow runs hourly, off the hour, and not on top of the others.
 
@@ -408,6 +409,7 @@ class TestFetchDiagnosticCannotSpend:
         )
 
 
+@pytest.mark.skip(reason="Fork Upsilon : planifications retirées et lecteur payant Gemini désactivé volontairement (pas de clé Google)")
 class TestPaidUrlContextRungIsArmedInEveryBotWorkflow:
     """The resolution-source ladder's one paid rung ships ON, and only where its key is wired.
 
