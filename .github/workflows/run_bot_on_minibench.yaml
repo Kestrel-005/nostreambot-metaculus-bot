@@ -1,6 +1,12 @@
 name: Forecast on new Minibench questions
 
 on:
+  # Fork Upsilon : seul workflow planifié. Les questions MiniBench ouvrent au fil de
+  # l'eau et peuvent fermer vite ; le bot saute celles déjà prévues. Dépense plafonnée
+  # par la limite de la clé OpenRouter.
+  schedule:
+    - cron: "8 * * * *"  # toutes les heures à :08
+    - cron: "38 * * * *" # toutes les heures à :38
   workflow_dispatch:
 # Add concurrency group to prevent parallel runs
 concurrency:
