@@ -19,7 +19,9 @@ def test_forecaster_budgets_preserve_timeouts_and_effort():
         assert kwargs["timeout"] == 480
         assert kwargs["stream"] is False
         if not is_google:
-            assert kwargs["reasoning"] == {"effort": "xhigh"}
+            # Fork Upsilon : le slot OpenAI tourne en "high" (coût), Anthropic reste en "xhigh".
+            expected = "high" if "/openai/" in llm.model else "xhigh"
+            assert kwargs["reasoning"] == {"effort": expected}
 
 
 def test_other_production_slots_use_full_verified_allowance():

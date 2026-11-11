@@ -123,7 +123,7 @@ FORECASTER_LLMS: list[GeneralLlm] = [
     # 2026-09-29: gpt-6-sol -> gpt-6.1-sol; effort and deadline settings unchanged.
     _forecaster_slot(
         "openrouter/openai/gpt-6.1-sol",
-        reasoning={"effort": "xhigh"},
+        reasoning={"effort": "high"},
     ),
     # Anthropic slot. 2026-07-15: enabled:True (provider-default adaptive thinking)
     # -> explicit effort=xhigh. Anthropic also exposes "max" one tier above xhigh —
